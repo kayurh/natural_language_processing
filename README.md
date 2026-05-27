@@ -12,6 +12,12 @@ The project investigates how different NLP techniques perform on this task and w
 
 ---
 
+## 🔬 Research Question
+
+How does the quality of text representation — from lexical (TF-IDF) to semantic embeddings to contextual transformers — affect emotion classification performance and robustness in NLP systems?
+
+---
+
 ## 🎯 Objectives
 
 The main objectives of this project are:
@@ -109,4 +115,54 @@ We systematically analyze model failures across:
 
 ---
 
-## 🧱 Project Structure
+## 📊 Error Cases
+
+| Text                   | True    | Predicted | Reason   |
+| ---------------------- | ------- | --------- | -------- |
+| “I’m not happy”        | sadness | joy       | Negation |
+| “Great… just perfect.” | anger   | joy       | Sarcasm  |
+
+
+---
+
+## ⚖️ Model Trade-Offs
+
+| Model | Strengths | Weaknesses |
+|---|---|---|
+| TF-IDF | Fast, interpretable | Weak contextual understanding |
+| Embeddings | Semantic similarity | Loses sentence structure |
+| BERT | Context-aware, strongest performance | Computationally expensive |
+
+---
+
+## 🔍 Data Flow
+
+```mermaid
+graph TD
+    A[Dataset] --> B[Preprocessing]
+    B --> C[TF-IDF Model]
+    B --> D[Embedding Model]
+    B --> E[BERT Model]
+    C --> F[Evaluation]
+    D --> F
+    E --> F
+    F --> G[Error Analysis]
+```
+---
+
+## 🧠 Key Findings
+
+- TF-IDF performs surprisingly well on keyword-driven emotions
+- Static embeddings improve semantic understanding but lose structure
+- BERT substantially improves contextual reasoning and negation handling
+- Sarcasm remains difficult for all models
+
+---
+
+# 📊 Final Results
+
+| Model | Accuracy | Macro F1 |
+|---|---|---|
+| TF-IDF + Logistic Regression | 0.80 | 0.77 |
+| GloVe Embeddings | 0.75 | 0.72 |
+| DistilBERT | 0.91 | 0.89 |
